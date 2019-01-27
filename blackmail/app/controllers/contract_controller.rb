@@ -3,7 +3,22 @@ require 'openssl'
 
 class ContractController < ApplicationController
 
-  def download
+  def view
+    password = params[:passphrase]
+    contractid = params[:contractID]
+    contract = Contract.find_by(id: contractid)
+    iv = contract.crypto_iv
+    key = Digest::SHA256.digest(password)
+    ciphertext = contract.content
+
+    cipher = OpenSSL::Cipher::Cipher.new("aes-256-cbc")
+    cipher.decrypt
+    cipher.key = key
+    cipher.iv = iv
+
+    plaintext = cipher.update(ciphertext)
+    plaintext << cipher.final
+    render plain: plaintext
   end
 
   def create
@@ -20,6 +35,8 @@ class ContractController < ApplicationController
     receiverUID = contract.require(:receiverUID)
     deadline = contract.require(:deadline) # deadline in s since epoch
 
+    contractid = Digest::SHA256.hexdigest(contract.to_s) # TODO add user ID when available
+
     key = Digest::SHA256.digest(password)
     cipher = OpenSSL::Cipher::Cipher.new("aes-256-cbc")
     cipher.encrypt
@@ -31,8 +48,8 @@ class ContractController < ApplicationController
     ciphertext = cipher.update(content)
     ciphertext << cipher.final
 
-    # for now, skipping crypto to get the upload/dl working.
     @contract = Contract.new(
+        id: contractid,
         ownerUID: "a",
         receiverUID: receiverUID,
         content: ciphertext,
