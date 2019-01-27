@@ -3,7 +3,7 @@
 
 Log In
 
-<%= form_with scope: :account, url: blackmail_loginfo_path, local: true do |form| %>
+<%= form_with scope: :account, url: blackmail_newlogin_path, local: true do |form| %>
 <% unless @user.nil? || @user.errors.empty? %>
 <ul>
   <% @user.errors.full_messages.each do |msg| %>

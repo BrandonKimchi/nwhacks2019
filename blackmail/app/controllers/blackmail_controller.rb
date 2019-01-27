@@ -17,14 +17,24 @@ class BlackmailController < ApplicationController
     #   render 'login'
     # end
   end
-  def loginfo
+  def newlogin
     account = params[:account]
     user = User.find_by(username: account[:username])
 
     unless user.nil? || account[:password].empty? || account[:password].nil?
-      phash = Digest::SHA256.base64digest(account.require(:password))
-      if user.passhash == phash
-        render plain: params[:account]
+      passhash = Digest::SHA256.base64digest(account.require(:password))
+      if user.passhash == passhash
+        uid = user.uid;
+        # Nuke possible old session
+        @session = Session.find_by(uid: uid)
+        unless @session.nil?
+          @session.destroy()
+        end
+        # Create login session in database
+        @session = Session.new(uid: uid, token: SecureRandom.uuid)
+        @session.save()
+        # Set session cookie on client
+        cookies[:sessionid] = @session.token
       end
     else
       #return 'invalid credentails'
