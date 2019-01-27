@@ -1,30 +1,34 @@
-<h1>Register</h1>
-<div>
+<body>
+  <div class="container">
+    <div class="jumbotron" margin="auto">
+      <h1>Register</h1>
+    Register your account!
 
-Register your account!
+    <%= form_with scope: :account, url: blackmail_create_account_path, local: true do |form| %>
+    <% unless @user.nil? || @user.errors.empty? %>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+    <% end %>
+      <div class="form-group">
+        <b><%= form.label :username %></b>
+        <%= form.text_field :username , class: 'form-control'%>
+      </div>
 
-<%= form_with scope: :account, url: blackmail_create_account_path, local: true do |form| %>
-<% unless @user.nil? || @user.errors.empty? %>
-<ul>
-  <% @user.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-</ul>
-<% end %>
-  <p>
-    <b><%= form.label :username %><br/></b>
-    <%= form.text_field :username %>
-  </p>
+      <div class="form-group">
+        <b><%= form.label :password %></b> <br/>
+        <%= form.text_field :password , class: 'form-control'%>
+        <small class="form-text"> Don't forget this because we don't do email recovery :)</small>
+      </div>
 
-  <p>
-    <b><%= form.label :password %></b> Don't forget this because we don't do email recovery :)<br/>
-    <%= form.text_field :password %>
-  </p>
-
-  <p>
-    <b><%= form.label :password_confirmation, 'Confirm Password' %><br/></b>
-    <%= form.text_field :password_confirmation %>
-  </p>
-  <%= form.submit %>
-<% end %>
-</div>
+      <p>
+        <b><%= form.label :password_confirmation, 'Confirm Password' %><br/></b>
+        <%= form.text_field :password_confirmation , class: 'form-control'%>
+      </p>
+      <%= form.submit %>
+    <% end %>
+    </div>
+  </div>
+</body>
