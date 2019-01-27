@@ -1,0 +1,12 @@
+<h1>Dashboard#view</h1>
+<p>Find me in app/views/dashboard/view.html.erb</p>
+<% test = "yeehaw"
+contracts = Contract.all%>
+<p><%= test %> </p>
+<div>
+  <% contracts.each do |contract| %>
+    <div>
+      <div display="inline-block"><%= contract.task %></div><%= contract.content %>
+    </div>
+  <% end %>
+</div>

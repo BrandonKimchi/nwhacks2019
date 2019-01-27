@@ -38,7 +38,7 @@ class ContractController < ApplicationController
         content: ciphertext,
         pwhash: password,
         crypto_iv: iv,
-        task: contract,
+        task: condition,
         expiration: deadline)
     @contract.save()
 
