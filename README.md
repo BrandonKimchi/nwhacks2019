@@ -60,25 +60,25 @@ https://guides.rubyonrails.org/active_record_validations.html
     - make picking due date neater
 
   - view what people may owe you --done--
-    - download button grayed if day not past, otherwise available
+    - download button grayed if day not past, otherwise available --done--
     - password field appear as well
 
 -Run TTL checks on the deadlines --done--
 
 
--Unlock/allow download of dirt -- not gated by user, but uses the passphrase to work --done--
+-Unlock/allow download of dirt --done--
   - check user is the right collector for this --done--
   - check the date is valid --done--
   - check password matches before decrypting or we bust the cipher --done--
 
 -Add a logout button --done--
 
--Link login and sign up pages
+-Link login and sign up pages --done--
 
 -Fancy UI stuff
 https://medium.freecodecamp.org/add-bootstrap-to-your-ruby-on-rails-project-8d76d70d0e3b
 
--Display username + sign out butten when logged in
+-Display username + sign out butten when logged in --done--
 
 -Validations on creating new contracts
 

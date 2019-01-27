@@ -31,13 +31,22 @@
             </div>
           </div>
           <div class="col-2" >
-            <%= form_with url: contract_complete_path, local: true do |form| %>
-            <input type="hidden" name="contractID" value="<%= contract.id %>"/>
-            <%= form.submit "Task Complete", class: "btn btn-success", style: "height: 100px; padding 0px; margin 0px"%>
+            <div id="carouselControls" class="carousel slide "data-ride="carousel" data-interval="false">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <a class="btn btn-success" href="#carouselControls" data-slide="next" style="height: 100px" role="button"/>
+                </div>
+                <div class="carousel-item">
+                  <%= form_with url: contract_complete_path, local: true do |form| %>
+                  <input type="hidden" name="contractID" value="<%= contract.id %>"/>
+                  <%= form.submit "Task Complete", class: "btn btn-success", style: "height: 100px; padding 0px; margin 0px"%>
+                  <% end %>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <% end %>
       <% end %>
     </div>
 
@@ -62,7 +71,11 @@
             <%= form.label :passphrase, '' %>
             <%= form.text_field :passphrase %>
             <input type="hidden" name="contractID" value="<%= contract.id %>"/>
-            <%= form.submit "unlock", class: "btn btn-success"%>
+            <%
+            if Time.current.to_i < contract.expiration
+              disable = true
+            end %>
+            <%= form.submit "unlock", class: "btn btn-success", disabled: disable%>
             <% end %>
           </div>
           </div>
