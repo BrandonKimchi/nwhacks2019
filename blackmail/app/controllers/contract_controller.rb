@@ -63,7 +63,7 @@ class ContractController < ApplicationController
     end
 
     contract = params[:contract]
-    ownerUID = @logged_user.uid
+    ownerUID = @logged_user.username
     condition = contract.require(:contract) # the task to be completed
     content = contract.require(:content) # the secret held as collateral
     password = contract.require(:password)

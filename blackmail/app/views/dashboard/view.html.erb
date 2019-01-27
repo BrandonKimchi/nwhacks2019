@@ -1,57 +1,74 @@
-<h1>Dashboard#view</h1>
-<p>Find me in app/views/dashboard/view.html.erb</p>
+<div class="container">
+  <div class="jumbotron">
+    <h1>Dashboard</h1>
 
-<%= @logged_user.username %>
+    Welcome <%= @logged_user.username %>
 
-<%= form_with url: blackmail_logout_path, local: true do |form| %>
+    <%= form_with url: blackmail_logout_path, local: true do |form| %>
+    <%= form.submit "logout", class: "btn btn-danger"%>
+    <% end %>
 
-  <%= form.submit "logout" %>
-<% end %>
+    <a href="/contract/create">Make new promises</a>
+    <br/>
+    <hr/>
+    Your promises
 
-<a href="/contract/create">Make new promises</a>
-<br/>
-Your promises
+    <div>
 
-<div>
-
-  <% contracts = Contract.where(ownerUID: @logged_user.uid)
-  contracts.each do |contract| %>
-    <div style="border: 1px solid black">
-      <div display="inline-block"><%= contract.task %></div>
-      owed to
-      <%= contract.receiverUID %>
-      on
-      <%= contract.expiration %>
-      <div display="inline-block"><%= contract.content %></div>
-      <div>contract id: <%= contract.id %></div>
-      <%= form_with url: contract_complete_path, local: true do |form| %>
-
-        <%= form.label :passphrase, '' %>
-        <%= form.text_field :passphrase %>
-        <input type="hidden" name="contractID" value="<%= contract.id %>"/>
-        <%= form.submit %>
+      <% contracts = Contract.where(ownerUID: @logged_user.uid)
+      contracts.each do |contract| %>
+      <div class="container">
+        <div class="row" style="border:2px solid; border-radius:6px;">
+          <div class="col" style=" margin:10px">
+            <div class="row">
+              <h2><%= contract.task %></h2>
+            </div>
+            <div class="row">
+              Owed to
+              <%= contract.receiverUID %>
+              on
+              <%= Time.at(contract.expiration) %>
+            </div>
+          </div>
+          <div class="col-2" >
+            <%= form_with url: contract_complete_path, local: true do |form| %>
+            <input type="hidden" name="contractID" value="<%= contract.id %>"/>
+            <%= form.submit "Task Complete", class: "btn btn-success", style: "height: 100px; padding 0px; margin 0px"%>
+          </div>
+        </div>
+      </div>
+      <% end %>
       <% end %>
     </div>
-  <% end %>
-</div>
 
-Promises owed to you
-<% contracts = Contract.where(receiverUID: @logged_user.username)
-contracts.each do |contract| %>
-  <div style="border: 1px solid black">
-    <div display="inline-block"><%= contract.task %></div>
-    owed to
-    <%= contract.receiverUID %>
-    on
-    <%= contract.expiration %>
-    <div display="inline-block"><%= contract.content %></div>
-    <div>contract id: <%= contract.id %></div>
-    <%= form_with url: contract_view_path, local: true do |form| %>
-
-      <%= form.label :passphrase, '' %>
-      <%= form.text_field :passphrase %>
-      <input type="hidden" name="contractID" value="<%= contract.id %>"/>
-      <%= form.submit %>
+    <hr/>
+    Promises owed to you
+    <% contracts = Contract.where(receiverUID: @logged_user.username)
+    contracts.each do |contract| %>
+    <div class="container">
+      <div class="row" style="border:2px solid; border-radius:6px; padding:12px">
+        <div class="col">
+          <div class="row">
+            <h2><%= contract.task %></h2>
+          </div>
+          <div class="row">
+            owed by
+            <%= contract.ownerUID %>
+            on
+            <%= Time.at(contract.expiration) %>
+          </div>
+          <div class="row>"
+            <%= form_with url: contract_view_path, local: true do |form| %>
+            <%= form.label :passphrase, '' %>
+            <%= form.text_field :passphrase %>
+            <input type="hidden" name="contractID" value="<%= contract.id %>"/>
+            <%= form.submit "unlock", class: "btn btn-success"%>
+            <% end %>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <% end %>
   </div>
-<% end %>
+</div>
