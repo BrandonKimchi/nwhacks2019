@@ -15,10 +15,9 @@ ActiveRecord::Schema.define(version: 2019_01_27_052606) do
   create_table "contracts", force: :cascade do |t|
     t.string "ownerUID"
     t.string "receiverUID"
-    t.binary "content"
+    t.string "content"
     t.string "pwhash"
-    t.binary "crypto_iv"
-    t.integer "expiration"
+    t.integer "expriation"
     t.string "task"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
