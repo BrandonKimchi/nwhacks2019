@@ -26,6 +26,7 @@ class BlackmailController < ApplicationController
         @session.save()
         # Set session cookie on client
         cookies[:sessionid] = @session.token
+        redirect_to dashboard_view_url
       end
     else
       #return 'invalid credentails'
