@@ -42,17 +42,16 @@ class ContractController < ApplicationController
     if @logged_user.nil?
       redirect_to blackmail_login_url
     end
-    render plain: params
 
     contract = params[:contract]
-    # get owner uid from session
+    ownerUID = @logged_user.uid
     condition = contract.require(:contract) # the task to be completed
     content = contract.require(:content) # the secret held as collateral
     password = contract.require(:password)
     receiverUID = contract.require(:receiverUID)
     deadline = contract.require(:deadline) # deadline in s since epoch
 
-    contractid = Digest::SHA256.hexdigest(contract.to_s) # TODO add user ID when available
+    contractid = Digest::SHA256.hexdigest(contract.to_s + ownerUID.to_s + receiverUID.to_s + condition.to_s) # TODO add user ID when available
 
     key = Digest::SHA256.digest(password)
     cipher = OpenSSL::Cipher::Cipher.new("aes-256-cbc")
@@ -67,7 +66,7 @@ class ContractController < ApplicationController
 
     @contract = Contract.new(
         id: contractid,
-        ownerUID: "a",
+        ownerUID: ownerUID,
         receiverUID: receiverUID,
         content: ciphertext,
         pwhash: password,
