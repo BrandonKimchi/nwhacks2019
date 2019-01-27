@@ -4,18 +4,9 @@ class BlackmailController < ApplicationController
   def index
   end
   def login
-    # account = params[:account]
-    # user = User.find_by(username: account[:username])
-    #
-    # unless user.nil? || account[:password].empty? || account[:password].nil?
-    #   phash = Digest::SHA256.base64digest(account.require(:password))
-    #   if user.passhash == phash
-    #     render plain: params[:account]
-    #   end
-    # else
-    #   #return 'invalid credentails'
-    #   render 'login'
-    # end
+    unless @logged_user.nil?
+      redirect_to dashboard_view_url
+    end
   end
   def newlogin
     account = params[:account]
