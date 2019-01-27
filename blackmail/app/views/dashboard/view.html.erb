@@ -15,7 +15,7 @@
 
     <div>
 
-      <% contracts = Contract.where(ownerUID: @logged_user.uid)
+      <% contracts = Contract.where(ownerUID: @logged_user.username)
       contracts.each do |contract| %>
       <div class="container">
         <div class="row" style="border:2px solid; border-radius:6px;">
@@ -43,9 +43,9 @@
 
     <hr/>
     Promises owed to you
-    <% contracts = Contract.where(receiverUID: @logged_user.username)
-    contracts.each do |contract| %>
     <div class="container">
+      <% contracts = Contract.where(receiverUID: @logged_user.username)
+      contracts.each do |contract| %>
       <div class="row" style="border:2px solid; border-radius:6px; padding:12px">
         <div class="col">
           <div class="row">
@@ -57,22 +57,24 @@
             on
             <%= Time.at(contract.expiration) %>
           </div>
-          <div class="row>"
+          <div class="row">
             <%= form_with url: contract_view_path, local: true do |form| %>
             <%= form.label :passphrase, '' %>
             <%= form.text_field :passphrase %>
             <input type="hidden" name="contractID" value="<%= contract.id %>"/>
             <%
             if Time.current.to_i < contract.expiration
-              disable = true
-            end %>
-            <%= form.submit "unlock", class: "btn btn-success", disabled: disable%>
+              %>
+              <%= form.submit "unlock", class: "btn btn-success", disabled: true%>
+            <% else %>
+            <%= form.submit "unlock", class: "btn btn-success" %>
+            <% end %>
             <% end %>
           </div>
           </div>
         </div>
+        <% end %>
       </div>
     </div>
-    <% end %>
   </div>
 </div>

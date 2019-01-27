@@ -34,8 +34,8 @@ class ContractController < ApplicationController
         plaintext << cipher.final
         render plain: plaintext
       else
-        render plain: contract.passhash
-        # redirect_to '/dashboard/view'
+        # render plain: contract.passhash
+        redirect_to '/dashboard/view'
       end
     end
   end
