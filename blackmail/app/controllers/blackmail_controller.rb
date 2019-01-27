@@ -3,6 +3,11 @@ require 'digest'
 class BlackmailController < ApplicationController
   def index
   end
+  def register
+    unless @logged_user.nil?
+      redirect_to dashboard_view_url
+    end
+  end
   def login
     unless @logged_user.nil?
       redirect_to dashboard_view_url
