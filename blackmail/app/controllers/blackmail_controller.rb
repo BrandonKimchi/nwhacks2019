@@ -4,6 +4,20 @@ class BlackmailController < ApplicationController
   def index
   end
   def login
+    # account = params[:account]
+    # user = User.find_by(username: account[:username])
+    #
+    # unless user.nil? || account[:password].empty? || account[:password].nil?
+    #   phash = Digest::SHA256.base64digest(account.require(:password))
+    #   if user.passhash == phash
+    #     render plain: params[:account]
+    #   end
+    # else
+    #   #return 'invalid credentails'
+    #   render 'login'
+    # end
+  end
+  def loginfo
     account = params[:account]
     user = User.find_by(username: account[:username])
 
@@ -12,11 +26,11 @@ class BlackmailController < ApplicationController
       if user.passhash == phash
         render plain: params[:account]
       end
-    else 
+    else
       #return 'invalid credentails'
       render 'login'
-    end 
-  end   
+    end
+  end
   def create_account
 
     # puts params[:account]
