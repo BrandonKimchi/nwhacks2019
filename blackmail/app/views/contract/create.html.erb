@@ -1,31 +1,36 @@
-<h1>Contract#create</h1>
-Upload your tea.
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Create a Contract</h1>
+      Upload your tea.
 
-<%= form_with scope: :contract, url: contract_new_path, local: true do |form| %>
-  <p>
-    <b><%= form.label :contract %><br/></b>
-    <%= form.text_field :contract %>
-  </p>
+      <%= form_with scope: :contract, url: contract_new_path, local: true do |form| %>
+        <p>
+          <b><%= form.label :contract %><br/></b>
+          <%= form.text_field :contract , class: 'form-control'%>
+        </p>
 
-  <p>
-    <b><%= form.label :content, 'Your secret' %><br/></b>
-    <%= form.text_field :content %>
-  </p>
+        <p>
+          <b><%= form.label :content, 'Your secret' %><br/></b>
+          <%= form.text_field :content , class: 'form-control'%>
+        </p>
 
-  <p>
-    <b><%= form.label :password, 'Encryption password (NOT your account password)' %><br/></b>
-    <%= form.text_field :password %>
-  </p>
+        <p>
+          <b><%= form.label :password, 'Encryption password (NOT your account password)' %><br/></b>
+          <%= form.text_field :password , class: 'form-control'%>
+        </p>
 
-  <p>
-    <b><%= form.label :receiverUID, 'UID of your witness' %><br/></b>
-    <%= form.text_field :receiverUID %>
-  </p>
+        <p>
+          <b><%= form.label :receiverUID, 'UID of your witness' %><br/></b>
+          <%= form.text_field :receiverUID , class: 'form-control'%>
+        </p>
 
-  <p>
-    <b><%= form.label :deadline, 'Deadline (in seconds epoch time)' %><br/></b>
-    <%= form.text_field :deadline %>
-  </p>
-
-  <%= form.submit %>
-<% end %>
+        <p>
+          <b><%= form.label :deadline, 'Deadline (in seconds epoch time)' %><br/></b>
+          <%= form.text_field :deadline , class: 'form-control'%>
+        </p>
+        <%= form.submit class: 'btn btn-success btn-lg btn-block'%>
+      <% end %>
+    </div>
+  </div>
+</body>

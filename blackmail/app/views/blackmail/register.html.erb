@@ -1,5 +1,5 @@
 <body>
-  <main role="main">
+  <div class="container">
     <div class="jumbotron" margin="auto">
       <h1>Register</h1>
     Register your account!
@@ -12,15 +12,16 @@
       <% end %>
     </ul>
     <% end %>
-      <p>
-        <b><%= form.label :username %><br/></b>
+      <div class="form-group">
+        <b><%= form.label :username %></b>
         <%= form.text_field :username , class: 'form-control'%>
-      </p>
+      </div>
 
-      <p>
-        <b><%= form.label :password %></b> Don't forget this because we don't do email recovery :)<br/>
+      <div class="form-group">
+        <b><%= form.label :password %></b> <br/>
         <%= form.text_field :password , class: 'form-control'%>
-      </p>
+        <small class="form-text"> Don't forget this because we don't do email recovery :)</small>
+      </div>
 
       <p>
         <b><%= form.label :password_confirmation, 'Confirm Password' %><br/></b>
@@ -29,5 +30,5 @@
       <%= form.submit %>
     <% end %>
     </div>
-  </main>
+  </div>
 </body>
