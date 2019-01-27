@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
   get 'blackmail/index'
 
   get 'blackmail/register'
