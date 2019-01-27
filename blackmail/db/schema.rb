@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_01_27_095629) do
     t.binary "crypto_iv"
     t.integer "expiration"
     t.string "task"
+    t.string "contractid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

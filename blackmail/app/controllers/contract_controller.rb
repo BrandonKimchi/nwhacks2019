@@ -51,8 +51,7 @@ class ContractController < ApplicationController
     receiverUID = contract.require(:receiverUID)
     deadline = contract.require(:deadline) # deadline in s since epoch
 
-    contractid = Digest::SHA256.hexdigest(contract.to_s + ownerUID.to_s + receiverUID.to_s + condition.to_s) # TODO add user ID when available
-
+    contractid = SecureRandom.uuid
     key = Digest::SHA256.digest(password)
     cipher = OpenSSL::Cipher::Cipher.new("aes-256-cbc")
     cipher.encrypt
@@ -65,7 +64,7 @@ class ContractController < ApplicationController
     ciphertext << cipher.final
 
     @contract = Contract.new(
-        id: contractid,
+        contractid: contractid,
         ownerUID: ownerUID,
         receiverUID: receiverUID,
         content: ciphertext,

@@ -9,7 +9,7 @@ Your promises
 
 <div>
 
-  <% contracts = Contract.where(ownerUID: @logged_user.uid) 
+  <% contracts = Contract.where(ownerUID: @logged_user.uid)
   contracts.each do |contract| %>
     <div style="border: 1px solid black">
       <div display="inline-block"><%= contract.task %></div>
@@ -31,7 +31,8 @@ Your promises
 </div>
 
 Promises owed to you
-<% contracts.each do |contract| %>
+<% contracts = Contract.where(receiverUID: @logged_user.uid)
+contracts.each do |contract| %>
   <div style="border: 1px solid black">
     <div display="inline-block"><%= contract.task %></div>
     owed to

@@ -74,6 +74,9 @@ https://guides.rubyonrails.org/active_record_validations.html
 -Fancy UI stuff
 https://medium.freecodecamp.org/add-bootstrap-to-your-ruby-on-rails-project-8d76d70d0e3b
 
+-Display username + sign out butten when logged in
+
+-Validations on creating new contracts
 
 User Schema:
 
