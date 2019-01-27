@@ -9,16 +9,21 @@ class BlackmailController < ApplicationController
 
     # puts params[:account]
     account = params[:account]
-    if account[:password] == account[:password_confirmation]
-      passhash = Digest::SHA256.base64digest(account.require(:password))
+    unless account[:password].nil? || account[:password].empty? || account[:password_confirmation].empty? || account[:password_confirmation].nil?
+      if account.require(:password) == account.require(:password_confirmation)
+        passhash = Digest::SHA256.base64digest(account.require(:password))
+      end
+      uid = Digest::SHA256.hexdigest(account.require(:username))
     end
-    uid = Digest::SHA256.hexdigest(account.require(:username))
+
+    unless account[:username].nil? || account[:username].empty?
+      username = account.require(:username)
+    end
 
     # TODO Assuming no malformed input here, and not checking any input fields
     # This will also allow duplicate entries for username, but it at least fucntional
-    @user = User.new(uid: uid, username: account.require(:username),
-      passhash: passhash)
-
+    @user = User.new(uid: uid, username: username,
+    passhash: passhash)
     if @user.save()
       # success
       render plain: params[:account]
