@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   get 'dashboard/view'
   get 'contract/create'
-  get 'contract/download'
-  post 'contract/new'
+  post 'contract/view'
   get 'sessions/new'
   get 'blackmail/index'
 

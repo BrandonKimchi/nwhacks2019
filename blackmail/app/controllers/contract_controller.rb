@@ -3,7 +3,7 @@ require 'openssl'
 
 class ContractController < ApplicationController
 
-  def download
+  def view
   end
 
   def create
@@ -31,7 +31,6 @@ class ContractController < ApplicationController
     ciphertext = cipher.update(content)
     ciphertext << cipher.final
 
-    # for now, skipping crypto to get the upload/dl working.
     @contract = Contract.new(
         ownerUID: "a",
         receiverUID: receiverUID,

@@ -4,9 +4,17 @@
 contracts = Contract.all%>
 <p><%= test %> </p>
 <div>
+
   <% contracts.each do |contract| %>
     <div>
-      <div display="inline-block"><%= contract.task %></div><%= contract.content %>
+      <div display="inline-block"><%= contract.task %></div>
+      <div display="inline-block"><%= contract.content %></div>
+      <%= form_with url: contract_view_path, local: true do |form| %>
+
+        <%= form.label :passphrase, '' %>
+        <%= form.text_field :passphrase %>
+        <%= form.submit %>
+      <% end %>
     </div>
   <% end %>
 </div>
