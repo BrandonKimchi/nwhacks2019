@@ -40,6 +40,12 @@ For displaying errors and failing saves on form content:
 https://guides.rubyonrails.org/active_record_validations.html
 
 -Build upload
+  just use simple text field for things like secrets, passwords, etc.
+
+  encrypting:
+  https://stackoverflow.com/questions/4128939/simple-encryption-in-ruby-without-external-gems
+  to fit the AES256, we will use SHA256 hash of the password as the encryption key.
+  Then, to not store the password, we will HASH THIS A SECOND TIME
 
 -Run TTL checks on the deadlines
 

@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2019_01_27_052606) do
     t.string "receiverUID"
     t.string "content"
     t.string "pwhash"
-    t.integer "expriation"
+    t.integer "expiration"
     t.string "task"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
