@@ -28,6 +28,21 @@ how do we persist our data?
 
 
 tasks:
+Following this tutorial
+https://guides.rubyonrails.org/getting_started.html
+
+-Setup basic server
+
+-Build login/sessions
+
+-Build upload
+
+-Run TTL checks on the deadlines
+
+-Unlock/allow download of dirt
+
+-Fancy UI stuff
+
 
 
 Data schema:
