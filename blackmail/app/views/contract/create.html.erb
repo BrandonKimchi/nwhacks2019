@@ -6,22 +6,24 @@
 
       <%= form_with scope: :contract, url: contract_new_path, local: true do |form| %>
         <p>
-          <b><%= form.label :contract %><br/></b>
+          <b><%= form.label :contract %></b><small>  - What task you have agreed to complete</small><br/>
           <%= form.text_field :contract , class: 'form-control'%>
         </p>
 
         <p>
-          <b><%= form.label :content, 'Your secret' %><br/></b>
+          <b><%= form.label :content, 'Your secret' %></b><small>  - What they will get if you don't finish on time</small><br/>
           <%= form.text_field :content , class: 'form-control'%>
         </p>
 
         <p>
-          <b><%= form.label :password, 'Encryption password (NOT your account password)' %><br/></b>
+          <b><%= form.label :password, 'Encryption password (NOT your account password)' %></b>
+          <small>  - The password you agreed on using </small><br/>
           <%= form.text_field :password , class: 'form-control'%>
         </p>
 
         <p>
-          <b><%= form.label :receiverUID, 'UID of your witness' %><br/></b>
+          <b><%= form.label :receiverUID, 'Username of your witness' %></b>
+          <small>  - Username of who will get your secret if you fail </small><br/>
           <%= form.text_field :receiverUID , class: 'form-control'%>
         </p>
 
