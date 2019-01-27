@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'blackmail/login'
   post 'blackmail/newlogin'
   post 'blackmail/logout'
+  get 'blackmail/about'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'blackmail#index'
