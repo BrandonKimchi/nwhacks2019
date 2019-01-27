@@ -1,0 +1,34 @@
+<h1>login</h1>
+<div>
+
+register
+<form>
+  Username
+  <input name="username">
+  </input>
+  <br/>
+  Password
+  <input name="password"></input>
+  <br/>
+  Confirm Password
+  <input name="password_confirmation"></input>
+</form>
+
+<%= form_with url: blackmail_create_account_path, local: true do |form| %>
+  <p>
+    <%= form.label :username %><br/>
+    <%= form.text_field :username %>
+  </p>
+
+  <p>
+    <%= form.label :password %><br/>
+    <%= form.text_field :password %>
+  </p>
+
+  <p>
+    <%= form.label :password_confirmation %><br/>
+    <%= form.text_field :password_confirmation %>
+  </p>
+  <%= form.submit %>
+<% end %>
+</div>
