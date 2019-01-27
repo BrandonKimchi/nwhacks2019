@@ -59,6 +59,13 @@ User Schema:
 Data schema:
 task:
  name, date, person, buddy, blob, passhash
+ ownerUID: owner of the task
+ receiverUID: witness who will get the collateral
+ content: encrypted text of the secret collateral
+ pwhash: hash (2nd hash of the encryption password) to verify when decrypting
+ crypto_iv: the iv used in the encryption cypher
+ expiration: time (seconds epoch time) to unlock the secret
+ task: name/description of the task
 
 login sessions:
  userid, sessionID
