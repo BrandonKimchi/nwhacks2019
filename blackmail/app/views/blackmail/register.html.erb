@@ -3,7 +3,7 @@
 
 Register your account!
 
-<%= form_with url: blackmail_create_account_path, local: true do |form| %>
+<%= form_with scope: :account, url: blackmail_create_account_path, local: true do |form| %>
   <p>
     <b><%= form.label :username %><br/></b>
     <%= form.text_field :username %>
