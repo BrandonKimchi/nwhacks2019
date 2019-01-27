@@ -59,7 +59,7 @@ class BlackmailController < ApplicationController
     passhash: passhash)
     if @user.save()
       # success
-      render plain: params[:account]
+      redirect_to '/blackmail/login'
     else
       # re-render sign up form
       render 'register'

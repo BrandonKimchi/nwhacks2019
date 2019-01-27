@@ -75,5 +75,6 @@ class ContractController < ApplicationController
         task: condition,
         expiration: deadline)
     @contract.save()
+    redirect_to '/dashboard/view'
   end
 end
