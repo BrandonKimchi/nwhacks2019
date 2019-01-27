@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ownerUID: MyString
+  receiverUID: MyString
+  content: MyString
+  pwhash: MyString
+  expriation: 1
+  task: MyString
+
+two:
+  ownerUID: MyString
+  receiverUID: MyString
+  content: MyString
+  pwhash: MyString
+  expriation: 1
+  task: MyString

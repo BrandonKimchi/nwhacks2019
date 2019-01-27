@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'contract/create'
+  get 'contract/download'
   get 'sessions/new'
   get 'blackmail/index'
 
