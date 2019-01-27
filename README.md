@@ -49,9 +49,11 @@ https://guides.rubyonrails.org/active_record_validations.html
 
 -Run TTL checks on the deadlines
 
--Unlock/allow download of dirt
+-Unlock/allow download of dirt -- not gated by user, but uses the passphrase to work
 
 -Fancy UI stuff
+https://medium.freecodecamp.org/add-bootstrap-to-your-ruby-on-rails-project-8d76d70d0e3b
+
 
 User Schema:
 
