@@ -1,7 +1,12 @@
 <h1>Dashboard#view</h1>
 <p>Find me in app/views/dashboard/view.html.erb</p>
-<% test = "yeehaw"
-contracts = Contract.all%>
+
+<%= @logged_user.username %>
+
+<%= form_with url: blackmail_logout_path, local: true do |form| %>
+
+  <%= form.submit "logout" %>
+<% end %>
 
 <a href="/contract/create">Make new promises</a>
 <br/>

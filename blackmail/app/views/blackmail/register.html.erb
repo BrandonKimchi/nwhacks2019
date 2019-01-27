@@ -1,8 +1,7 @@
 <body>
   <div class="container">
     <div class="jumbotron" margin="auto">
-      <h1>Register</h1>
-    Register your account!
+      <h1>Register an account</h1>
 
     <%= form_with scope: :account, url: blackmail_create_account_path, local: true do |form| %>
     <% unless @user.nil? || @user.errors.empty? %>
@@ -27,8 +26,10 @@
         <b><%= form.label :password_confirmation, 'Confirm Password' %><br/></b>
         <%= form.text_field :password_confirmation , class: 'form-control'%>
       </p>
-      <%= form.submit %>
+      <%= form.submit class: 'btn btn-success btn-lg btn-block'%>
     <% end %>
+    <br/>
+    <a href="/blackmail/login">Already have an account? Log in here!</a>
     </div>
   </div>
 </body>

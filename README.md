@@ -71,6 +71,10 @@ https://guides.rubyonrails.org/active_record_validations.html
   - check the date is valid --done--
   - check password matches before decrypting or we bust the cipher --done--
 
+-Add a logout button --done--
+
+-Link login and sign up pages
+
 -Fancy UI stuff
 https://medium.freecodecamp.org/add-bootstrap-to-your-ruby-on-rails-project-8d76d70d0e3b
 

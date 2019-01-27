@@ -1,26 +1,32 @@
-<h1>Log in</h1>
-<div>
+<body>
+  <div class="container">
+    <div class="jumbotron" margin="auto">
+      <h1>Log in</h1>
+      <div>
 
-Log In
+        <%= form_with scope: :account, url: blackmail_newlogin_path, local: true do |form| %>
+        <% unless @user.nil? || @user.errors.empty? %>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+        </ul>
+        <% end %>
+        <p>
+          <b><%= form.label :username %><br/></b>
+          <%= form.text_field :username, class: 'form-control'%>
+        </p>
 
-<%= form_with scope: :account, url: blackmail_newlogin_path, local: true do |form| %>
-<% unless @user.nil? || @user.errors.empty? %>
-<ul>
-  <% @user.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-</ul>
-<% end %>
-  <p>
-    <b><%= form.label :username %><br/></b>
-    <%= form.text_field :username %>
-  </p>
+        <p>
+          <b><%= form.label :password %></b><br/>
+          <%= form.text_field :password , class: 'form-control'%>
+        </p>
 
-  <p>
-    <b><%= form.label :password %></b><br/>
-    <%= form.text_field :password %>
-  </p>
-
-  <%= form.submit %>
-<% end %>
-</div>
+        <%= form.submit 'Login', class: 'btn btn-success btn-lg btn-block'%>
+        <% end %>
+      </div>
+      <br/>
+      <a href="/blackmail/register">Don't have an account? Sign up here!</a>
+    </div>
+  </div>
+</body>

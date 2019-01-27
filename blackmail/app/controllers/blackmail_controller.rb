@@ -8,11 +8,25 @@ class BlackmailController < ApplicationController
       redirect_to dashboard_view_url
     end
   end
+
   def login
     unless @logged_user.nil?
       redirect_to dashboard_view_url
     end
   end
+
+  def logout
+    if @logged_user.nil?
+      redirect_to blackmail_login_url
+    end
+    # kill cookie
+    sessid = cookies[:sessionid]
+    session = Session.find_by(token: sessid)
+    session.destroy
+    cookies.delete :sessionid
+    redirect_to blackmail_login_url
+  end
+
   def newlogin
     account = params[:account]
     user = User.find_by(username: account[:username])
