@@ -1,32 +1,21 @@
-<h1>login</h1>
+<h1>Register</h1>
 <div>
 
-register
-<form>
-  Username
-  <input name="username">
-  </input>
-  <br/>
-  Password
-  <input name="password"></input>
-  <br/>
-  Confirm Password
-  <input name="password_confirmation"></input>
-</form>
+Register your account!
 
 <%= form_with url: blackmail_create_account_path, local: true do |form| %>
   <p>
-    <%= form.label :username %><br/>
+    <b><%= form.label :username %><br/></b>
     <%= form.text_field :username %>
   </p>
 
   <p>
-    <%= form.label :password %><br/>
+    <b><%= form.label :password %></b> Don't forget this because we don't do email recovery :)<br/>
     <%= form.text_field :password %>
   </p>
 
   <p>
-    <%= form.label :password_confirmation %><br/>
+    <b><%= form.label :password_confirmation, 'Confirm Password' %><br/></b>
     <%= form.text_field :password_confirmation %>
   </p>
   <%= form.submit %>
