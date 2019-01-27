@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_27_052606) do
+ActiveRecord::Schema.define(version: 2019_01_27_095629) do
 
   create_table "contracts", force: :cascade do |t|
     t.string "ownerUID"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 2019_01_27_052606) do
     t.binary "crypto_iv"
     t.integer "expiration"
     t.string "task"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string "token"
+    t.string "uid"
+    t.integer "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

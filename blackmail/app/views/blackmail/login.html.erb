@@ -1,13 +1,26 @@
-<h1>login</h1>
+<h1>Log in</h1>
 <div>
 
-login?
-<form>
-  Username
-  <input name="username">
-  </input>
-  <br/>
-  Password
-  <input name="password"></input>
-</form>
+Log In
+
+<%= form_with scope: :account, url: blackmail_newlogin_path, local: true do |form| %>
+<% unless @user.nil? || @user.errors.empty? %>
+<ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+  <p>
+    <b><%= form.label :username %><br/></b>
+    <%= form.text_field :username %>
+  </p>
+
+  <p>
+    <b><%= form.label :password %></b><br/>
+    <%= form.text_field :password %>
+  </p>
+
+  <%= form.submit %>
+<% end %>
 </div>

@@ -33,13 +33,13 @@ https://guides.rubyonrails.org/getting_started.html
 
 -Setup basic server --done--
 
--Build login/sessions
+-Build login/sessions --done--
 Registration: /blackmail/register
    endpoint for making account at /blackmail/create_account
 For displaying errors and failing saves on form content:
 https://guides.rubyonrails.org/active_record_validations.html
 
--Build upload
+-Build upload --done--
   just use simple text field for things like secrets, passwords, etc.
 
   encrypting:
@@ -47,11 +47,31 @@ https://guides.rubyonrails.org/active_record_validations.html
   to fit the AES256, we will use SHA256 hash of the password as the encryption key.
   Then, to not store the password, we will HASH THIS A SECOND TIME
 
+  decryption works as well
+
+-Dashboard page
+  - view your bounties
+    - name, debt collector name, date/time due
+    - operation to mark completed
+
+  - create new bounties --done--
+    - make picking due date neater
+
+  - view what people may owe you
+    - download button grayed if day not past, otherwise available
+    - password field appear as well
+
 -Run TTL checks on the deadlines
 
--Unlock/allow download of dirt
+
+-Unlock/allow download of dirt -- not gated by user, but uses the passphrase to work
+  - check user is the right collector for this
+  - check the date is valid
+  - check password matches before decrypting or we bust the cipher
 
 -Fancy UI stuff
+https://medium.freecodecamp.org/add-bootstrap-to-your-ruby-on-rails-project-8d76d70d0e3b
+
 
 User Schema:
 

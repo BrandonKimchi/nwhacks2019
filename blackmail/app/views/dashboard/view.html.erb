@@ -2,7 +2,11 @@
 <p>Find me in app/views/dashboard/view.html.erb</p>
 <% test = "yeehaw"
 contracts = Contract.all%>
-<p><%= test %> </p>
+
+<a href="/contract/create">Make new promises</a>
+<br/>
+Your promises
+
 <div>
 
   <% contracts.each do |contract| %>
@@ -20,3 +24,5 @@ contracts = Contract.all%>
     </div>
   <% end %>
 </div>
+
+Promises owed to you
