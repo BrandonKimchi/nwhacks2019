@@ -9,6 +9,7 @@ contracts = Contract.all%>
     <div>
       <div display="inline-block"><%= contract.task %></div>
       <div display="inline-block"><%= contract.content %></div>
+      <div>contract id: <%= contract.id %></div>
       <%= form_with url: contract_view_path, local: true do |form| %>
 
         <%= form.label :passphrase, '' %>
