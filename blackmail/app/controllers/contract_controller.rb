@@ -64,23 +64,36 @@ class ContractController < ApplicationController
 
     contract = params[:contract]
     ownerUID = @logged_user.username
-    condition = contract.require(:contract) # the task to be completed
-    content = contract.require(:content) # the secret held as collateral
-    password = contract.require(:password)
-    receiverUID = contract.require(:receiverUID)
-    deadline = contract.require(:deadline) # deadline in s since epoch
+    unless contract[:contract].nil? || contract[:contract].empty?
+      condition = contract.require(:contract) # the task to be completed
+    end
+    unless contract[:content].nil? || contract[:content].empty?
+      content = contract.require(:content) # the secret held as collateral
+    end
+    unless contract[:password].nil? || contract[:password].empty?
+      password = contract.require(:password)
+    end
+    unless contract[:receiverUID].nil? || contract[:receiverUID].empty?
+      receiverUID = contract.require(:receiverUID)
+    end
+    unless contract[:deadline].nil? || contract[:deadline].empty?
+      deadline = contract.require(:deadline) # deadline in s since epoch
+    end
 
-    contractid = SecureRandom.uuid
-    key = Digest::SHA256.digest(password)
-    cipher = OpenSSL::Cipher::Cipher.new("aes-256-cbc")
-    cipher.encrypt
 
-    cipher.key = key
-    iv = cipher.random_iv
-    cipher.iv = iv
+    unless contract[:content].nil? || contract[:content].empty? || contract[:password].nil? || contract[:password].empty?
+      contractid = SecureRandom.uuid
+      key = Digest::SHA256.digest(password)
+      cipher = OpenSSL::Cipher::Cipher.new("aes-256-cbc")
+      cipher.encrypt
 
-    ciphertext = cipher.update(content)
-    ciphertext << cipher.final
+      cipher.key = key
+      iv = cipher.random_iv
+      cipher.iv = iv
+
+      ciphertext = cipher.update(content)
+      ciphertext << cipher.final
+    end
 
     @contract = Contract.new(
         contractid: contractid,
