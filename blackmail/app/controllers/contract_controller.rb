@@ -5,7 +5,20 @@ class ContractController < ApplicationController
 
   def view
     password = params[:passphrase]
+    contractid = params[:contractID]
+    contract = Contract.find_by(id: contractid)
+    iv = contract.crypto_iv
+    key = Digest::SHA256.digest(password)
+    ciphertext = contract.content
 
+    cipher = OpenSSL::Cipher::Cipher.new("aes-256-cbc")
+    cipher.decrypt
+    cipher.key = key
+    cipher.iv = iv
+
+    plaintext = cipher.update(ciphertext)
+    plaintext << cipher.final
+    render plain: plaintext
   end
 
   def create
