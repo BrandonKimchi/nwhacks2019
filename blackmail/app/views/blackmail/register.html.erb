@@ -1,0 +1,23 @@
+<h1>Register</h1>
+<div>
+
+Register your account!
+
+<%= form_with scope: :account, url: blackmail_create_account_path, local: true do |form| %>
+  <p>
+    <b><%= form.label :username %><br/></b>
+    <%= form.text_field :username %>
+  </p>
+
+  <p>
+    <b><%= form.label :password %></b> Don't forget this because we don't do email recovery :)<br/>
+    <%= form.text_field :password %>
+  </p>
+
+  <p>
+    <b><%= form.label :password_confirmation, 'Confirm Password' %><br/></b>
+    <%= form.text_field :password_confirmation %>
+  </p>
+  <%= form.submit %>
+<% end %>
+</div>
