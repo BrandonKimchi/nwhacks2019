@@ -4,21 +4,40 @@ require 'openssl'
 class ContractController < ApplicationController
 
   def view
+    if @logged_user.nil?
+      redirect_to blackmail_login_url
+    end
     password = params[:passphrase]
     contractid = params[:contractID]
     contract = Contract.find_by(id: contractid)
-    iv = contract.crypto_iv
-    key = Digest::SHA256.digest(password)
-    ciphertext = contract.content
+    unless contract.nil?
+      key = Digest::SHA256.digest(password)
 
-    cipher = OpenSSL::Cipher::Cipher.new("aes-256-cbc")
-    cipher.decrypt
-    cipher.key = key
-    cipher.iv = iv
+      # security checks
+      # User must be receiver for this  bounty
+      if @logged_user.username == contract.receiverUID &&
+      # Password must be correct for the hash stored with this contract
+        key == contract.passhash &&
+      # Time must be past the deadline
+        Time.now.to_i > contract.expiration
 
-    plaintext = cipher.update(ciphertext)
-    plaintext << cipher.final
-    render plain: plaintext
+
+        iv = contract.crypto_iv
+        ciphertext = contract.content
+
+        cipher = OpenSSL::Cipher::Cipher.new("aes-256-cbc")
+        cipher.decrypt
+        cipher.key = key
+        cipher.iv = iv
+
+        plaintext = cipher.update(ciphertext)
+        plaintext << cipher.final
+        render plain: plaintext
+      else
+        render plain: contract.passhash
+        # redirect_to '/dashboard/view'
+      end
+    end
   end
 
   def create
@@ -68,7 +87,7 @@ class ContractController < ApplicationController
         ownerUID: ownerUID,
         receiverUID: receiverUID,
         content: ciphertext,
-        pwhash: password,
+        passhash: key,
         crypto_iv: iv,
         task: condition,
         expiration: deadline)

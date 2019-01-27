@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_01_27_095629) do
     t.string "ownerUID"
     t.string "receiverUID"
     t.binary "content"
-    t.string "pwhash"
+    t.binary "passhash"
     t.binary "crypto_iv"
     t.integer "expiration"
     t.string "task"

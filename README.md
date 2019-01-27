@@ -59,7 +59,7 @@ https://guides.rubyonrails.org/active_record_validations.html
   - create new bounties --done--
     - make picking due date neater
 
-  - view what people may owe you
+  - view what people may owe you --done--
     - download button grayed if day not past, otherwise available
     - password field appear as well
 
