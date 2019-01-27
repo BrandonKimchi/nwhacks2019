@@ -31,9 +31,13 @@ tasks:
 Following this tutorial
 https://guides.rubyonrails.org/getting_started.html
 
--Setup basic server
+-Setup basic server --done--
 
 -Build login/sessions
+Registration: /blackmail/register
+   endpoint for making account at /blackmail/create_account
+For displaying errors and failing saves on form content:
+https://guides.rubyonrails.org/active_record_validations.html
 
 -Build upload
 
@@ -43,6 +47,7 @@ https://guides.rubyonrails.org/getting_started.html
 
 -Fancy UI stuff
 
+User Schema:
 
 
 Data schema:
