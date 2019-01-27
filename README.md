@@ -51,8 +51,10 @@ https://guides.rubyonrails.org/active_record_validations.html
 
 -Dashboard page
   - view your bounties
-    - name, debt collector name, date/time due
+    - name, debt collector name, date/time due --done--
     - operation to mark completed
+      - pop up confirmation
+      - on confirm, destroy the record --done--
 
   - create new bounties --done--
     - make picking due date neater

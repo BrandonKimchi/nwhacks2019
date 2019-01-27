@@ -3,7 +3,6 @@ require 'openssl'
 
 class ContractController < ApplicationController
 
-
   def view
     password = params[:passphrase]
     contractid = params[:contractID]
@@ -21,15 +20,22 @@ class ContractController < ApplicationController
     plaintext << cipher.final
     render plain: plaintext
   end
-  def download
-    if @logged_user.nil?
-      redirect_to blackmail_login_url
-  end
 
   def create
     if @logged_user.nil?
       redirect_to blackmail_login_url
     end
+  end
+
+  def complete
+    if @logged_user.nil?
+      redirect_to blackmail_login_url  # redirect to login if not logged in yet
+    end
+    # Destroy the record
+    contractid = params[:contractID]
+    contract = Contract.find_by(id: contractid)
+    contract.destroy
+    render 'dashboard/view'
   end
 
   def new
@@ -69,6 +75,5 @@ class ContractController < ApplicationController
         task: condition,
         expiration: deadline)
     @contract.save()
-
   end
 end

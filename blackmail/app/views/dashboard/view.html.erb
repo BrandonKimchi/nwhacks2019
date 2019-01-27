@@ -10,11 +10,15 @@ Your promises
 <div>
 
   <% contracts.each do |contract| %>
-    <div>
+    <div style="border: 1px solid black">
       <div display="inline-block"><%= contract.task %></div>
+      owed to
+      <%= contract.receiverUID %>
+      on
+      <%= contract.expiration %>
       <div display="inline-block"><%= contract.content %></div>
       <div>contract id: <%= contract.id %></div>
-      <%= form_with url: contract_view_path, local: true do |form| %>
+      <%= form_with url: contract_complete_path, local: true do |form| %>
 
         <%= form.label :passphrase, '' %>
         <%= form.text_field :passphrase %>
